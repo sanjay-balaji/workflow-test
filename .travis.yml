@@ -18,6 +18,11 @@ jobs:
 services:
   - docker # required, but travis uses older version of docker :(
 
+addons:
+  apt:
+    packages:
+      - docker-ce
+
 install:
   - echo "install nothing!" # put your normal pre-testing installs here
 
