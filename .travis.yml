@@ -9,6 +9,12 @@ arch:
 services:
   - docker # required, but travis uses older version of docker :(
 
+install:
+  - echo "install nothing!" # put your normal pre-testing installs here
+
+script:
+  - echo "no tests!" # put your normal testing scripts here
+
 after_success:
   - docker --version  # document the version travis is using
   - docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}
