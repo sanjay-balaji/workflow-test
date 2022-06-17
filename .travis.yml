@@ -2,9 +2,18 @@ sudo: required #is required to use docker service in travis
 
 language: php #can be any language, just php for example
 
-arch:
-  - amd64
-  - arm64-graviton2
+jobs:
+  include:
+    - os: linux
+      arch: amd64
+    - os: linux
+      arch: arm64-graviton2
+      virt: lxd
+      group: edge
+
+# arch:
+#   - amd64
+#   - arm64-graviton2
 
 services:
   - docker # required, but travis uses older version of docker :(
@@ -22,5 +31,5 @@ script:
   - docker push ${DOCKER_USERNAME}/release:test-${TRAVIS_ARCH}
 
 after_success:
-  - docker manifest create ${DOCKER_USERNAME}/release:test --amend ${DOCKER_USERNAME}/release:test-amd64 --amend ${DOCKER_USERNAME}/release:test-arm64 
+  - docker manifest create ${DOCKER_USERNAME}/release:test --amend ${DOCKER_USERNAME}/release:test-amd64 --amend ${DOCKER_USERNAME}/release:test-arm64
   - docker manifest push ${DOCKER_USERNAME}/release:test-latest
