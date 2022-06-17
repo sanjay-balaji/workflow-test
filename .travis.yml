@@ -2,10 +2,6 @@ sudo: required #is required to use docker service in travis
 
 language: php #can be any language, just php for example
 
-stages:
-  - build
-  - compile
-
 env:
   - DOCKER_CLI_EXPERIMENTAL=enabled
 
@@ -20,7 +16,7 @@ jobs:
         virt: lxd
         group: edge
     - stage: compile
-      script: 
+      script: ./publish.sh
 
 services:
   - docker
