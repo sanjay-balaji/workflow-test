@@ -12,12 +12,14 @@ services:
 install:
   - echo "install nothing!" # put your normal pre-testing installs here
 
+before_script:
+  - docker --version
+  - docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}
+
 script:
-  - echo "no tests!" # put your normal testing scripts here
+  - docker build -t ${DOCKER_USERNAME}/release:test-${TRAVIS_ARCH} .
+  - docker push ${DOCKER_USERNAME}/release:test-${TRAVIS_ARCH}
 
 after_success:
-  - docker --version  # document the version travis is using
-  - docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}
-  - env
-  - docker build -t ${DOCKER_USERNAME}/release:test .
-  - docker push ${DOCKER_USERNAME}/release:test
+  - docker manifest create ${DOCKER_USERNAME}/release:test --amend ${DOCKER_USERNAME}/release:test-amd64 --amend ${DOCKER_USERNAME}/release:test-arm64v8 
+  - docker manifest push ${DOCKER_USERNAME}/release:test-latest
