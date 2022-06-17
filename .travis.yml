@@ -21,5 +21,5 @@ script:
   - docker push ${DOCKER_USERNAME}/release:test-${TRAVIS_ARCH}
 
 after_success:
-  - docker manifest create ${DOCKER_USERNAME}/release:test --amend ${DOCKER_USERNAME}/release:test-amd64 --amend ${DOCKER_USERNAME}/release:test-arm64v8 
+  - docker manifest create ${DOCKER_USERNAME}/release:test --amend ${DOCKER_USERNAME}/release:test-amd64 --amend ${DOCKER_USERNAME}/release:test-arm64 
   - docker manifest push ${DOCKER_USERNAME}/release:test-latest
