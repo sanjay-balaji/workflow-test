@@ -15,6 +15,7 @@ install:
 before_script:
   - docker --version
   - docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}
+  - env
 
 script:
   - docker build -t ${DOCKER_USERNAME}/release:test-${TRAVIS_ARCH} .
