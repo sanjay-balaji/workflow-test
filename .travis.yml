@@ -9,12 +9,14 @@ jobs:
   include:
     - stage: build
       script: ./build.sh
-      - os: linux
-        arch: amd64
-      - os: linux
-        arch: arm64-graviton2
-        virt: lxd
-        group: edge
+      os: linux
+      arch: amd64
+    - stage: build
+      script: ./build.sh
+      os: linux
+      arch: arm64-graviton2
+      virt: lxd
+      group: edge
     - stage: compile
       script: ./publish.sh
 
