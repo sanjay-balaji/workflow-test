@@ -40,4 +40,4 @@ script:
 
 after_success:
   - docker manifest create ${DOCKER_USERNAME}/release:test --amend ${DOCKER_USERNAME}/release:test-amd64 --amend ${DOCKER_USERNAME}/release:test-aarch64
-  - docker manifest push ${DOCKER_USERNAME}/release:test-latest
+  - docker manifest push ${DOCKER_USERNAME}/release:test
