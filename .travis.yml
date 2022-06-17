@@ -17,18 +17,13 @@ jobs:
 services:
   - docker
 
-install:
-  - echo "install nothing!"
-
 before_script:
   - docker --version
   - docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}
   - env
 
 script:
-  - docker build -t ${DOCKER_USERNAME}/release:test-${TRAVIS_ARCH} .
-  - docker push ${DOCKER_USERNAME}/release:test-${TRAVIS_ARCH}
-
-after_success:
-  - docker manifest create ${DOCKER_USERNAME}/release:test --amend ${DOCKER_USERNAME}/release:test-amd64 --amend ${DOCKER_USERNAME}/release:test-aarch64
-  - docker manifest push ${DOCKER_USERNAME}/release:test
+  - docker build -t ${DOCKER_USERNAME}/release:${TRAVIS_COMMIT}-${TRAVIS_ARCH} .
+  - docker push ${DOCKER_USERNAME}/release:${TRAVIS_COMMIT}-${TRAVIS_ARCH}
+  - docker manifest create ${DOCKER_USERNAME}/release:${TRAVIS_COMMIT} --amend ${DOCKER_USERNAME}/release:${TRAVIS_COMMIT}-amd64 --amend ${DOCKER_USERNAME}/release:${TRAVIS_COMMIT}-aarch64
+  - docker manifest push ${DOCKER_USERNAME}/release:${TRAVIS_COMMIT}
