@@ -18,5 +18,5 @@ script:
 after_success:
   - docker --version  # document the version travis is using
   - docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}
-  - docker build -t my_example_app-${arch} .
+  - docker build -t my_example_app
   - docker push ${DOCKER_USERNAME}/release
