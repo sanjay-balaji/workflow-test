@@ -14,20 +14,11 @@ jobs:
       virt: lxd
       group: edge
 
-# arch:
-#   - amd64
-#   - arm64-graviton2
-
 services:
-  - docker # required, but travis uses older version of docker :(
-
-# addons:
-#   apt:
-#     packages:
-#       - docker-ce
+  - docker
 
 install:
-  - echo "install nothing!" # put your normal pre-testing installs here
+  - echo "install nothing!"
 
 before_script:
   - docker --version
