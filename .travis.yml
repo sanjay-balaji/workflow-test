@@ -5,6 +5,10 @@ language: php #can be any language, just php for example
 env:
   - DOCKER_CLI_EXPERIMENTAL=enabled
 
+stages:
+  - build
+  - publish
+
 jobs:
   include:
     - stage: build
