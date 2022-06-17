@@ -3,6 +3,6 @@ FROM alpine
 
 RUN apk add --no-cache nginx
 
-CMD ["nginx"]
+CMD ["nginx", "-g", "daemon off;"]
 
-EXPOSE 8080
+EXPOSE 80
