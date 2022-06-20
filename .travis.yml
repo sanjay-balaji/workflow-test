@@ -32,4 +32,3 @@ jobs:
 before_script:
   - docker --version
   - docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}
-
