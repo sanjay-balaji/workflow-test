@@ -1,5 +1,7 @@
 sudo: required #is required to use docker service in travis
 
+language: minimal
+
 services:
   - docker
 
